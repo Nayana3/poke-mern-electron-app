@@ -1,28 +1,24 @@
 {
   "name": "pokemern-electron",
   "version": "1.0.0",
+  "description": "PokeMERN desktop app",
+  "author": "Nayana",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "npx electron .",
     "dist": "cross-env NODE_ENV=production electron-builder --win"
   },
-  "dependencies": {
-    "electron": "^13.6.9"
-  },
   "devDependencies": {
+    "cross-env": "^10.0.0",
+    "electron": "^37.2.5",
     "electron-builder": "^26.0.12"
   },
   "build": {
     "appId": "com.yourdomain.pokemern",
     "productName": "PokeMERN",
-    "files": [
-      "**/*"
-    ],
+    "files": ["**/*"],
     "win": {
-      "target": [
-        "nsis",
-        "portable"
-      ]
+      "target": ["nsis", "portable"]
     },
     "nsis": {
       "oneClick": false,

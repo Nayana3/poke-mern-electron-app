@@ -13,7 +13,7 @@ function createWindow() {
   const isProd = process.env.NODE_ENV === 'production';
 
   const startUrl = isProd
-    ? 'https://your-vercel-app.vercel.app' // replace with your deployed frontend URL
+    ? 'http://localhost:3000' // replace with your deployed frontend URL
     : 'http://localhost:3000';
 
   win.loadURL(startUrl);

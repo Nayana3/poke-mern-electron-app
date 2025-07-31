@@ -6,10 +6,17 @@ function createWindow() {
     width: 900,
     height: 700,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
+      preload: path.join(__dirname, 'preload.js'),
+    },
   });
-  win.loadURL('http://localhost:3000');
+
+  const isProd = process.env.NODE_ENV === 'production';
+
+  const startUrl = isProd
+    ? 'https://your-vercel-app.vercel.app' // replace with your deployed frontend URL
+    : 'http://localhost:3000';
+
+  win.loadURL(startUrl);
 }
 
 app.whenReady().then(createWindow);

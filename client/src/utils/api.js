@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || '/api',
+  baseURL: '/api', // search -> /api/pokemon/search?name=..., details -> /api/pokemon/details/:id
   timeout: 10000,
-})
+});
 
-export default api
+export default api;

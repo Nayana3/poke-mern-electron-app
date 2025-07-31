@@ -1,0 +1,15 @@
+{
+  "name": "poke-mern-electron-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start:server": "nodemon server/src/index.js",
+    "start:client": "npm start --prefix client",
+    "start:electron": "npm start --prefix electron",
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\" \"npm run start:electron\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.0"
+  }
+}

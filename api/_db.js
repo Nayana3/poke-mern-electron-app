@@ -1,4 +1,3 @@
-// api/_db.js
 const mongoose = require('mongoose');
 
 let cached = global._mongo;
@@ -8,10 +7,7 @@ async function connect() {
   if (cached.conn) return cached.conn;
   if (!cached.promise) {
     cached.promise = mongoose
-      .connect(process.env.MONGO_URI, {
-        dbName: 'pokemern',
-        bufferCommands: false,
-      })
+      .connect(process.env.MONGO_URI, { dbName: 'pokemern' })
       .then(m => m.connection);
   }
   cached.conn = await cached.promise;

@@ -1,4 +1,3 @@
-// api/models/Pokemon.js
 const mongoose = require('mongoose');
 
 const PokemonSchema = new mongoose.Schema({

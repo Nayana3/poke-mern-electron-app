@@ -1,4 +1,3 @@
-// api/pokemon/search.js
 const { connect } = require('../_db');
 const Pokemon = require('../models/Pokemon');
 const axios = require('axios');
@@ -6,13 +5,10 @@ const axios = require('axios');
 module.exports = async function handler(req, res) {
   const { name } = req.query;
   if (!name) return res.status(400).json({ error: 'name is required' });
-
   try {
     await connect();
-
     const regex = new RegExp(name, 'i');
     const records = await Pokemon.find({ name: regex });
-
     if (records.length) {
       const summary = records.map(r => {
         const p = r.data;
@@ -29,7 +25,6 @@ module.exports = async function handler(req, res) {
     // fallback to PokeAPI
     const master = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=1000');
     const filtered = master.data.results.filter(p => regex.test(p.name)).slice(0, 20);
-
     const detailed = await Promise.all(
       filtered.map(async p => {
         const resp = await axios.get(`https://pokeapi.co/api/v2/pokemon/${p.name}`);
@@ -47,7 +42,6 @@ module.exports = async function handler(req, res) {
         };
       })
     );
-
     return res.json(detailed);
   } catch (err) {
     console.error('search error', err);
